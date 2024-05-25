@@ -1,0 +1,15 @@
+.header-container{
+    display: flex;
+    align-items: center;
+    place-content: center;
+}
+
+#app-logo{
+    height:1.5rem;
+    padding: 0 3px;
+}
+
+#app-title {
+    font-size: 1.5rem;
+    color: rgb(204, 0, 0);
+}
