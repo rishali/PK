@@ -7,7 +7,6 @@ import { GuessComponent } from './components/guess/guess.component';
 import { ResultComponent } from './components/result/result.component';
 import { HomeComponent } from './components/home/home.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { GuessBodyComponent } from './components/guess-body/guess-body/guess-body.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -19,9 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     GuessComponent,
     ResultComponent,
-    HomeComponent,
-    GuessBodyComponent
-  ],
+    HomeComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

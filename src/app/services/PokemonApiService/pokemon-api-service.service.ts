@@ -8,14 +8,14 @@ import { catchError, throwError } from 'rxjs';
 export class PokemonApiServiceService {
 
   private baseUrl="http://localhost:8080/"
-  private randomPokemonUrl=`${this.baseUrl}randomPokemon`;
+  private questionPokemonUrl=`${this.baseUrl}questionPokemon`;
   private verifyPokemonUrl=`${this.baseUrl}verifyPokemon`;
 
   constructor(private http:HttpClient) { 
   }
 
   getRandomPokemon(){
-    return this.http.get<any>(this.randomPokemonUrl).pipe(
+    return this.http.get<any>(this.questionPokemonUrl).pipe(
       catchError((error: any) => {
         console.error(error);
         return throwError('An error occurred');

@@ -1,6 +1,7 @@
 .guess-container{
     display: flex;
     flex-direction: column;
+    margin: 0 2rem;
 }
 
 .guess-navbar{
@@ -9,16 +10,74 @@
 }
   
 .guess-body{
-    display: block;
-    flex:5;
-    flex-direction: column;
-    margin: 0 2rem;
+    // display: block;
+    // flex-direction: column;
+    // width: inherit;
+    // background: #ffedd6;
+    display: flex;
+    width: inherit;
+    flex-wrap: wrap;
+    place-content: space-around;
+    margin: 1rem 2rem;
 }
 
 .silhouette-container{
     text-align: center;
-    padding: 5px;
-    margin: 2px;
+    padding: 0.2rem;
+    margin: 0.2rem;
+    float: left;
+    width: 40%;
+    place-self: center;
+}
+
+#pokemon-question-img{
+    width: 45%;
+}
+
+.options{
+    float: right;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    margin: inherit;
+    padding: 1.5rem;
+    column-gap: 0.2rem;
+}
+
+.option-button{
+    font-size: 0.8rem;
+    min-width: 6rem;
+}
+
+.options button.correct {
+    background-color: green;
+    color: white;
+}
+
+.options button.wrong {
+background-color: red;
+color: white;
+}
+
+.options button.default {
+    background-color:white;
+    color: black;
+    }
+
+
+
+.options button:disabled {
+cursor: not-allowed;
+opacity: 0.6;
+}
+
+.tempMessage{
+    background-color: rgb(127 236 127 / 74%);
+    font-weight: 500;
+    font-size: medium;
+    padding: 0.5rem 2rem;
+    border-radius: 1.5rem;
 }
 
 .guess-footer{
