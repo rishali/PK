@@ -15,9 +15,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
+import { ErrorComponent } from './components/error/error/error.component';
 
 @NgModule({
-  declarations: [AppComponent, GuessComponent, ResultComponent, HomeComponent],
+  declarations: [AppComponent, GuessComponent, ResultComponent, HomeComponent, ErrorComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
