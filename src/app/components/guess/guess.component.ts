@@ -23,6 +23,7 @@ export class GuessComponent implements OnInit {
   isAnswerCorrect: string = '';
   currentScore: number = 0;
   actualPokemonName = '';
+  errorMessage = null;
 
   constructor(
     private router: Router,
@@ -38,9 +39,15 @@ export class GuessComponent implements OnInit {
     this.pokemonApiService
       .getRandomPokemon()
       .pipe(take(1))
-      .subscribe((data: questionInterface) => {
-        this.question = data;
-      });
+      .subscribe(
+        (data: questionInterface) => {
+          this.question = data;
+        },
+        (err) => {
+          this.errorMessage = err;
+          console.log(err);
+        }
+      );
   }
 
   navigateToHome() {

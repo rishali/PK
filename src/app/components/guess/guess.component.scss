@@ -35,6 +35,16 @@
   min-height: 15rem;
 }
 
+.error-container {
+  display: flex;
+  width: inherit;
+  min-height: 15rem;
+  color: black;
+  font-weight: 600;
+  align-items: center;
+  text-align: center;
+}
+
 .silhouette-container {
   text-align: center;
   padding: 0.2rem;
@@ -120,4 +130,10 @@
 .progress-counter {
   font-size: medium;
   color: black;
+}
+
+.loading-container {
+  align-items: center;
+  text-align: center;
+  margin: 8px;
 }

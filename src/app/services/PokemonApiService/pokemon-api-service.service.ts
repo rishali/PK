@@ -14,7 +14,7 @@ export class PokemonApiServiceService {
     return this.http.get<questionInterface>(questionPokemonUrl).pipe(
       catchError((error: any) => {
         console.error(error);
-        return throwError('An error occurred');
+        return throwError('Server down');
       })
     );
   }
