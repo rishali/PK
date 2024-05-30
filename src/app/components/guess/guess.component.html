@@ -1,44 +1,75 @@
 <div class="guess-container">
-    <div class="guess-navbar">
-        <mat-toolbar color="primary">
-            <mat-toolbar-row>
-            <button mat-icon-button class="home-icon" aria-label="Pokemon game home icon button" (click)="navigateToHome()">
-                <mat-icon aria-hidden="false" aria-label=" Pokemon game home icon" fontIcon="home"></mat-icon>
-            </button>
-              <span class="spacer"></span>
-              <span>My Score : {{currentScore}}</span>
-            </mat-toolbar-row>
-            </mat-toolbar>
-    </div>
+  <div class="guess-navbar">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button
+          mat-icon-button
+          class="home-icon"
+          aria-label="Pokemon game home icon button"
+          (click)="navigateToHome()"
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label=" Pokemon game home icon"
+            fontIcon="home"
+          ></mat-icon>
+        </button>
+        <p class="title">Who's that Pokemon?</p>
+        <span class="spacer"></span>
+        <span class="score">My Score : {{ currentScore }}</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
 
-    <div class="guess-body">
-        <div class="silhouette-container"> 
-            <img  id="pokemon-question-img" src={{question.imgSrc}}>
-        </div>
-        <div class="options">
-            <button *ngFor="let option of question.options let i=index "
-                mat-raised-button aria-label="option button" class= "option-button" 
-                (click)="selectOption(i)" 
-                [ngClass]="{'correct': i === selectedOptionIndex && isCorrectAnswer(i), 
-                            'wrong': i === selectedOptionIndex && !isCorrectAnswer(i)}"
-                [disabled]="isOptionDisabled && selectedOptionIndex !== i" >
-                {{option}}
-            </button>
-        </div>
-        <div  class="tempMessage" *ngIf="isAnswerCorrect"> Yayy! That's right.</div>
+  <div class="guess-body">
+    <div class="silhouette-container">
+      <img
+        id="pokemon-question-img"
+        class="img"
+        src="{{ question.imgSrc }}"
+        [ngClass]="{ bright: revealImg }"
+      />
     </div>
+    <div class="options">
+      <button
+        *ngFor="let option of question.options; let i = index"
+        mat-raised-button
+        aria-label="option button"
+        class="option-button"
+        (click)="selectOption(i)"
+        [ngClass]="{ correct: i === selectedOptionIndex && isCorrectAnswer(i) }"
+        [disabled]="isOptionDisabled && selectedOptionIndex !== i"
+      >
+        {{ option }}
+      </button>
+    </div>
+    @if (isAnswerCorrect==="true") {
+    <div class="correctMessage message">
+      Yayy! That's right. It's a {{ actualPokemonName | uppercase }}
+    </div>
+    } @if(isAnswerCorrect==="false") {
+    <div class="incorrectMessage message">
+      That's incorrect. The right answer is {{ actualPokemonName | uppercase }}
+    </div>
+    }
+  </div>
 
-    <div class="guess-footer">
-        <mat-toolbar>
-            <mat-toolbar-row>
-                <span>{{currentQuestionNumber}} / {{totalQuestions}}</span>   
-                <span class="spacer"></span>
-                <button mat-raised-button aria-label="next question" (click)="checkAndNavigate()"
-                [disabled]="isNextDisabled">
-                    Next
-                </button>
-                
-            </mat-toolbar-row>
-            </mat-toolbar>
-    </div>
+  <div class="guess-footer">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <span class="progress-counter"
+          >{{ currentQuestionNumber }} / {{ totalQuestions }}</span
+        >
+        <span class="spacer"></span>
+        <button
+          mat-raised-button
+          aria-label="next question"
+          (click)="checkAndNavigate()"
+          [disabled]="isNextDisabled"
+        >
+          Next
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
 </div>

@@ -1,5 +1,24 @@
-.result-page{
-    padding: 2rem;
-    text-align: center;
-    place-content: center;
+.result-container {
+  display: flex;
+  height: 100%;
+  place-content: center;
+  padding: 8rem;
+  padding: 8rem;
+  margin: 0rem 6rem 0 6rem;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url(/assets/images/pokemonbgdimg.jpg);
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+}
+
+.message {
+  color: black;
+  font-size: 1.5em;
+  line-height: normal;
+  text-align: center;
+  padding-top: 3rem;
 }

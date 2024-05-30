@@ -1,91 +1,122 @@
-.guess-container{
-    display: flex;
-    flex-direction: column;
-    margin: 0 2rem;
+.guess-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 2rem;
 }
 
-.guess-navbar{
-    display: flex;
-    flex:1;
-}
-  
-.guess-body{
-    // display: block;
-    // flex-direction: column;
-    // width: inherit;
-    // background: #ffedd6;
-    display: flex;
-    width: inherit;
-    flex-wrap: wrap;
-    place-content: space-around;
-    margin: 1rem 2rem;
+.guess-navbar {
+  display: flex;
+  flex: 1;
 }
 
-.silhouette-container{
-    text-align: center;
-    padding: 0.2rem;
-    margin: 0.2rem;
-    float: left;
-    width: 40%;
-    place-self: center;
+.title {
+  display: flex;
+  width: inherit;
+  place-content: center;
+  margin: 0.1rem;
+  font-size: larger;
+  font-family: cursive;
 }
 
-#pokemon-question-img{
-    width: 45%;
+.score {
+  font-size: small;
+  letter-spacing: normal;
 }
 
-.options{
-    float: right;
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
-    margin: inherit;
-    padding: 1.5rem;
-    column-gap: 0.2rem;
+.guess-body {
+  display: flex;
+  width: inherit;
+  flex-wrap: wrap;
+  place-content: space-around;
+  margin: 1rem 2rem;
+  border-left: 5px solid #ff0000c7;
+  border-right: 5px solid #1b0e0ec7;
+  border-radius: 2rem;
 }
 
-.option-button{
-    font-size: 0.8rem;
-    min-width: 6rem;
+.silhouette-container {
+  text-align: center;
+  padding: 0.2rem;
+  margin: 0.2rem;
+  float: left;
+  width: 40%;
+  place-self: center;
+}
+
+#pokemon-question-img {
+  width: 45%;
+}
+
+.img {
+  filter: brightness(0%); /* Default darker image */
+}
+
+.img.bright {
+  filter: brightness(100%); /* Brighter image */
+  transition: filter 0.3s ease; /* Smooth transition */
+}
+
+.options {
+  float: right;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  margin: inherit;
+  padding: 1.5rem;
+  column-gap: 0.2rem;
+}
+
+.option-button {
+  font-size: 0.8rem;
+  min-width: 6rem;
 }
 
 .options button.correct {
-    background-color: green;
-    color: white;
+  background-color: green;
+  color: white;
 }
 
 .options button.wrong {
-background-color: red;
-color: white;
+  background-color: red;
+  color: white;
 }
 
 .options button.default {
-    background-color:white;
-    color: black;
-    }
-
-
+  background-color: white;
+  color: black;
+}
 
 .options button:disabled {
-cursor: not-allowed;
-opacity: 0.6;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
-.tempMessage{
-    background-color: rgb(127 236 127 / 74%);
-    font-weight: 500;
-    font-size: medium;
-    padding: 0.5rem 2rem;
-    border-radius: 1.5rem;
+.message {
+  font-weight: 500;
+  font-size: medium;
+  padding: 0.5rem 2rem;
+  border-radius: 1.5rem;
 }
 
-.guess-footer{
-    display: flex;
-    flex:1;
+.correctMessage {
+  background-color: rgb(127 236 127 / 74%);
+}
+
+.incorrectMessage {
+  background-color: rgba(236, 143, 127, 0.74);
+}
+
+.guess-footer {
+  display: flex;
+  flex: 1;
 }
 
 .spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
 
+.progress-counter {
+  font-size: medium;
+  color: black;
+}

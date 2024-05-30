@@ -2,76 +2,88 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { PokemonApiServiceService } from '../../services/PokemonApiService/pokemon-api-service.service';
 import { take } from 'rxjs';
+import { ScoreService } from '../../services/scoreService/score.service';
+import { totalQuestions } from '../../../assets/constant';
+import { questionInterface } from '../../types';
 
 @Component({
   selector: 'app-guess',
   templateUrl: './guess.component.html',
-  styleUrl: './guess.component.scss'
+  styleUrl: './guess.component.scss',
 })
 export class GuessComponent implements OnInit {
+  revealImg = false;
+  totalQuestions = totalQuestions;
+  currentQuestionNumber: number = 1;
+  question: questionInterface = { id: -1, imgSrc: '', options: [] };
+  selectedOptionIndex: number = -1;
+  correctAnswerIndex: number = -1;
+  isOptionDisabled: boolean = false;
+  isNextDisabled: boolean = true;
+  isAnswerCorrect: string = '';
+  currentScore: number = 0;
+  actualPokemonName = '';
 
-  currentQuestionNumber:number=1;
-  totalQuestions:number=3;
-  question:any={};
-  selectedOptionIndex=null;
-  correctAnswerIndex = -1;
-  isOptionDisabled = false;
-  isNextDisabled =true;
-  isAnswerCorrect= false;
-  currentScore=0;
+  constructor(
+    private router: Router,
+    private pokemonApiService: PokemonApiServiceService,
+    private scoreService: ScoreService
+  ) {}
 
-
-  constructor(private router: Router , private pokemonApiService:PokemonApiServiceService){
-  }
-
-  ngOnInit(){
+  ngOnInit() {
     this.fetchQuestion();
   }
 
-  fetchQuestion(){
-    this.pokemonApiService.getRandomPokemon().pipe(take(1)).subscribe((data) =>{this.question=data;
-    });
+  fetchQuestion() {
+    this.pokemonApiService
+      .getRandomPokemon()
+      .pipe(take(1))
+      .subscribe((data: questionInterface) => {
+        this.question = data;
+      });
   }
 
-  navigateToHome(){
+  navigateToHome() {
     this.router.navigate(['/home']);
   }
 
-  checkAndNavigate(){
-    this.isAnswerCorrect=false;
+  checkAndNavigate() {
+    this.revealImg = false;
+    this.isAnswerCorrect = '';
     this.isOptionDisabled = false;
-    this.isNextDisabled =true;
-    this.selectedOptionIndex=null;
+    this.isNextDisabled = true;
+    this.selectedOptionIndex = -1;
     this.correctAnswerIndex = -1;
+    this.actualPokemonName = '';
 
-    if (this.currentQuestionNumber < this.totalQuestions) {
+    if (this.currentQuestionNumber < totalQuestions) {
       this.currentQuestionNumber++;
       this.fetchQuestion();
-    } 
-    else {
+    } else {
+      this.scoreService.sendScore(this.currentScore);
       this.router.navigate(['/result']);
     }
   }
-  
-  selectOption(index:any) {
+
+  selectOption(index: number) {
+    this.revealImg = true;
     this.isOptionDisabled = true;
     this.selectedOptionIndex = index;
-    let pokemon_id= this.question.id;
-    let selected_name=this.question.options[index]
-    this.pokemonApiService.verifySelectedPokemon(pokemon_id,selected_name).pipe(take(1)).subscribe(
-      (data) => {if(data.isPokemonAMatch==true){
-        this.correctAnswerIndex=index;
-        this.currentScore++;
-        this.isAnswerCorrect=true;
-    console.log(this.correctAnswerIndex,"  :::  ",pokemon_id)
-
-      }}
-    )
-    this.isNextDisabled=false;
+    this.pokemonApiService
+      .verifySelectedPokemon(this.question?.id, this.question?.options[index])
+      .pipe(take(1))
+      .subscribe((data) => {
+        if (data.isPokemonAMatch == true) {
+          this.correctAnswerIndex = index;
+          this.currentScore++;
+          this.isAnswerCorrect = 'true';
+        } else this.isAnswerCorrect = 'false';
+        this.actualPokemonName = data.name;
+      });
+    this.isNextDisabled = false;
   }
 
   isCorrectAnswer(index: number): boolean {
-    console.log(index, " ::  ***  :: ",this.correctAnswerIndex)
     return index === this.correctAnswerIndex;
   }
 }
