@@ -55,6 +55,7 @@ export class GuessComponent implements OnInit {
     this.selectedOptionIndex = -1;
     this.correctAnswerIndex = -1;
     this.actualPokemonName = '';
+    this.question = { id: -1, imgSrc: '', options: [] };
 
     if (this.currentQuestionNumber < totalQuestions) {
       this.currentQuestionNumber++;
