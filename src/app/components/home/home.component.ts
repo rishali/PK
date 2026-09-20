@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  constructor(private router: Router) {}
+  number = 6;
 
+  constructor(private router: Router) {}
   onStart() {
     this.router.navigate(['/guess']);
   }
