@@ -2,11 +2,12 @@
   <div class="header">
     <img src="assets/images/pokemonlogo.jpg" alt="applogo" id="app-logo" />
     <p id="app-title">Who's that Pokemon?</p>
-    
-    <p id="app-title">Who's that Pokemon1?</p>
-    <p id="app-title">Who's that Pokemon2?</p>
-    <p id="app-title">Who's that Pokemon3?</p>
-
+    <p *ngIf="number == 20" id="app-title">Who's that Pokemon1?</p>
+    <p *ngIf="number == 21" id="app-title">Who's that Pokemon2?</p>
+    <p *ngIf="number == 22" id="app-title">Who's that Pokemon3?</p>
+    <p *ngIf="number == 24" id="app-title">Who's that Pokemon4?</p>
+    <p *ngIf="number == 25" id="app-title">Who's that Pokemon5?</p>
+    <p *ngIf="number == 26" id="app-title">Who's that Pokemon6?</p>
   </div>
   <div class="home-body">
     <button mat-flat-button color="primary" (click)="onStart()">
